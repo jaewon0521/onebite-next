@@ -1,10 +1,10 @@
 import SearchableLayout from "@/components/searchable-layout";
 import style from "./index.module.css";
 import BookItem from "@/components/book-item";
-import { InferGetServerSidePropsType } from "next";
+import { InferGetStaticPropsType } from "next";
 import { fetchBooks, fetchRandomBooks } from "@/lib/fetch-books";
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   // 컴포넌트보다 먼저 실행되는 함수
   // return 형식은 Next JS의 문법에 따라 props객체를 포함하는 객체를 반환해야 한다.
   // Server에서 실행되기 때문에 Browser API를 호출하면 Error가 발생한다.
@@ -18,7 +18,7 @@ export const getServerSideProps = async () => {
     },
   };
 };
-export default function Home({ allBooks, randomBooks }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home({ allBooks, randomBooks }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
       <section className={style.container}>
